@@ -1,0 +1,6 @@
+.subckt inv_x2 vdd vss i nq
+Mnmos[0] vss i nq vss sky130_fd_pr__nfet_01v8__model l=1.5e-07 w=1.685e-06
+Mpmos[0] vdd i nq vdd sky130_fd_pr__pfet_01v8__model l=1.5e-07 w=2.045e-06
+Mnmos[1] nq i vss vss sky130_fd_pr__nfet_01v8__model l=1.5e-07 w=1.685e-06
+Mpmos[1] nq i vdd vdd sky130_fd_pr__pfet_01v8__model l=1.5e-07 w=2.045e-06
+.ends inv_x2

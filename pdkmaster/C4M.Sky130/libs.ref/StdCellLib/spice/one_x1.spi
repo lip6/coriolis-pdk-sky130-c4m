@@ -1,0 +1,4 @@
+.subckt one_x1 vdd vss one
+Mnpass vss one zero vss sky130_fd_pr__nfet_01v8__model l=1.5e-07 w=1.415e-06
+Mppass one zero vdd vdd sky130_fd_pr__pfet_01v8__model l=1.5e-07 w=1.775e-06
+.ends one_x1
