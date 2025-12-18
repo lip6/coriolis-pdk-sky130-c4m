@@ -140,8 +140,8 @@ Summary:        %{summary}
 %doc README.rst
 %license LICENSE
 %dir %{python3_sitearch}/pdks
-%{python3_sitearch}/pdks/sky130-c4m
-%{python3_sitearch}/coriolis_pdk_sky130-c4m-%{dateVersion}.dist-info
+%{python3_sitearch}/pdks/sky130_c4m
+%{python3_sitearch}/coriolis_pdk_sky130_c4m-%{dateVersion}.dist-info
 
 
 %changelog
