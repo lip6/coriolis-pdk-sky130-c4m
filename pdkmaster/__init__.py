@@ -9,7 +9,7 @@ def setup ():
     from coriolis                     import CRL 
     from coriolis.designflow.iverilog import Iverilog
     from coriolis.designflow.klayout  import Klayout
-    from coriolis.designflow.drc      import DRC
+   #from coriolis.designflow.drc      import DRC
     from coriolis.designflow.lvx      import Lvx
     from coriolis.designflow.x2y      import x2y
 
@@ -79,7 +79,7 @@ def setup ():
     shellEnv[ 'MBK_CATA_LIB' ] = shellEnv[ 'MBK_CATA_LIB' ] + ':' + spiceCells.as_posix()
     shellEnv.export()
     Klayout.setLypFile( lypFile )
-    DRC.setDrcRules( kdrcRulesC4M, DRC.C4M )
+    #DRC.setDrcRules( kdrcRulesC4M, DRC.C4M )
     #TODO incompleted DRC rules
     #DRC.setDrcRules( kdrcRulesMax, DRC.Maximal )
     #TODO sealring and filler
