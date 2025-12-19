@@ -18,13 +18,17 @@ Core2Chip configuration for the Sky130 harness.
 
 import sys
 import re
-from   coriolis.Hurricane         import DbU, DataBase, UpdateSession, Breakpoint, \
-                                         Transformation , Instance , Net
-from   coriolis.CRL               import Catalog, AllianceFramework
+from   pathlib                    import Path
+from   coriolis.Hurricane         import DbU, DataBase, Breakpoint, \
+                                         Box, Transformation, Instance, Net, Contact
+from   coriolis.CRL               import Catalog, AllianceFramework, DefImport
 from   coriolis.helpers           import trace
 from   coriolis.helpers.io        import ErrorMessage, WarningMessage
-from   coriolis.helpers.overlay   import CfgCache
-from   coriolis.plugins.core2chip.core2chip import CoreToChip as BaseCoreToChip, IoNet, IoPad
+from   coriolis.helpers.overlay   import CfgCache, UpdateSession
+from   coriolis.plugins.block.configuration \
+                                  import IoPin
+from   coriolis.plugins.core2chip.core2chip \
+                                  import CoreToChip as BaseCoreToChip, IoNet, IoPad
 
 
 # -------------------------------------------------------------------
@@ -227,7 +231,8 @@ class CoreToChip ( BaseCoreToChip ):
         Remove the supplied internal power grid and slightly shrink
         the central P&R area so that I/O pins are fully outside of it.
         """
-        self.harness = DefImport.load( self.conf.cfg.harness.path, DefImport.VHDLRename )
+        harnessPath = Path( __file__ ).parents[1] / 'libs.ref' / 'caravel' / 'user_project_wrapper.def'
+        self.harness = DefImport.load( harnessPath.as_posix(), DefImport.VHDLRename )
         innerAb  = self.harness.getAbutmentBox()
         wholeBb  = self.harness.getBoundingBox()
         filterBb = Box( wholeBb.getXMin(), innerAb.getYMin()

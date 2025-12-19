@@ -23,11 +23,10 @@ cells_files = [ techDir + 'coriolis/sky130/StdCell5V0Lib.py'
               ]
 
 core2chip_files = [ techDir + 'coriolis/sky130/core2chip/__init__.py'
-                  , techDir + 'coriolis/sky130/core2chip/sky130.py']
+                  , techDir + 'coriolis/sky130/core2chip/sky130.py' ]
 
 py.install_sources( files(    cells_files), subdir:'pdks/sky130_c4m' )
 py.install_sources( files(core2chip_files), subdir:'pdks/sky130_c4m/core2chip') 
-install_subdir(  refDir, install_dir:pdks_dir )
-install_subdir( techDir, install_dir:pdks_dir, exclude_directories:[techDir + 'coriolis'] )
-
-
+install_subdir(    refDir, install_dir:pdks_dir )
+install_subdir(   techDir, install_dir:pdks_dir, exclude_directories:[techDir + 'coriolis'] )
+install_subdir( 'caravel', install_dir:pdks_dir / 'libs.ref' )
