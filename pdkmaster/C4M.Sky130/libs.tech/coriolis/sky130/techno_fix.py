@@ -409,6 +409,7 @@ def _loadDevices ():
 def _setupTechnoSymb ():
     tech = DataBase.getDB().getTechnology()
     tech.addLayerAlias( 'nwm'     ,  'nWell'     )
+    tech.addLayerAlias( 'pwbm'    ,  'pWell'     )
     tech.addLayerAlias( 'difftap' ,  'active'    )
    #tech.addLayerAlias( 'poly'    ,  'poly'      )
     tech.addLayerAlias( 'psdm'    ,  'pImplant'  )
@@ -435,6 +436,7 @@ def _setupTechnoSymb ():
     tech.addLayerAlias( 'm3'      ,  'metbot'    )
 
     nWell     = tech.getBasicLayer( 'nwm'     )
+    pWell     = tech.getBasicLayer( 'pwbm'    )
     active    = tech.getBasicLayer( 'difftap' )
     poly      = tech.getBasicLayer( 'poly'    )
     pImplant  = tech.getBasicLayer( 'psdm'    )
@@ -459,11 +461,11 @@ def _setupTechnoSymb ():
 
     # Composite/Symbolic layers.
     NWELL       = RegularLayer   .create( tech, 'NWELL'      , nWell    )
-    #PWELL       = RegularLayer   .create( tech, 'PWELL'      , pWell    )
+    PWELL       = RegularLayer   .create( tech, 'PWELL'      , pWell    )
     NTIE        = DiffusionLayer .create( tech, 'NTIE'       , nImplant , active, nWell)
-    PTIE        = DiffusionLayer .create( tech, 'PTIE'       , pImplant , active, None)
-    NDIF        = DiffusionLayer .create( tech, 'NDIF'       , nImplant , active, None )
-    PDIF        = DiffusionLayer .create( tech, 'PDIF'       , pImplant , active, None )
+    PTIE        = DiffusionLayer .create( tech, 'PTIE'       , pImplant , active, pWell)
+    NDIF        = DiffusionLayer .create( tech, 'NDIF'       , nImplant , active, pWell )
+    PDIF        = DiffusionLayer .create( tech, 'PDIF'       , pImplant , active, nWell )
     GATE        = DiffusionLayer .create( tech, 'GATE'       , poly     , active, None )
     NTRANS      = TransistorLayer.create( tech, 'NTRANS'     , nImplant , active, poly, None )
     PTRANS      = TransistorLayer.create( tech, 'PTRANS'     , pImplant , active, poly, nWell )

@@ -16,7 +16,7 @@ def setup ():
     from coriolis                     import Viewer
     from coriolis                     import CRL 
     from coriolis.designflow.iverilog import Iverilog
-    from coriolis.designflow.klayout  import Klayout
+    from coriolis.designflow.klayout  import Klayout, DRC
     from coriolis.designflow.lvx      import Lvx
     from coriolis.designflow.x2y      import x2y
     from coriolis.designflow.tasyagle import TasYagle
@@ -70,6 +70,7 @@ def setup ():
     shellEnv[ 'MBK_CATA_LIB' ] = shellEnv[ 'MBK_CATA_LIB' ] + ':' + spiceCells.as_posix()
     shellEnv.export()
     Klayout.setLypFile( lypFile )
+    DRC.setDrcRules( kdrcRulesC4M )
     Iverilog.setStdCellLib( stdCellLibVlog )
     TasYagle.flags         = TasYagle.Transistor
     TasYagle.SpiceType     = 'hspice'
@@ -77,7 +78,8 @@ def setup ():
     TasYagle.MBK_CATA_LIB  = (stdCellDir / 'spice').as_posix() + ':' + ngspiceTechDir.as_posix()
     Lvx.MBK_CATA_LIB       = TasYagle.MBK_CATA_LIB
     x2y.MBK_CATA_LIB       = TasYagle.MBK_CATA_LIB
-    TasYagle.MBK_SPI_MODEL = ''
+    ShellEnv.MBK_SPI_MODEL = techDir / 'coriolis' / 'sky130' / 'spimodel.cfg'
+    TasYagle.MBK_SPI_MODEL = ShellEnv.MBK_SPI_MODEL
     TasYagle.Temperature   = 25.0
     TasYagle.VddSupply     = 1.8 
     TasYagle.VddName       = 'vdd'

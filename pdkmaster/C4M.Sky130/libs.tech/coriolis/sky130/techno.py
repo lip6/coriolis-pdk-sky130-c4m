@@ -185,6 +185,10 @@ def _setup_techno():
         size=u(0.84), spacing=u(1.27), gds2Layer=64, gds2DataType=20,
     )
     createBL(
+        tech, 'pwbm', BasicLayer.Material.pWell,
+        size=u(0.84), spacing=u(1.27), gds2Layer=19, gds2DataType=44,
+    )
+    createBL(
         tech, 'hvtp', BasicLayer.Material.other,
         size=u(0.38), spacing=u(0.38), area=0.265, gds2Layer=78, gds2DataType=44,
     )
